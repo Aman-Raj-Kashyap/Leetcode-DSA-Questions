@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
+//Both are Optimized solution
 class Solution {
     public int removeDuplicates(int[] nums) {
         //Since array is sorted we will take 2 pointer
