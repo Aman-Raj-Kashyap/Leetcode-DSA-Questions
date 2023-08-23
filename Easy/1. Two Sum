@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/two-sum/
+
 //O(n)
 public int[] twoSum(int[] nums, int target) {
     HashMap<Integer,Integer> map=new HashMap<>();
