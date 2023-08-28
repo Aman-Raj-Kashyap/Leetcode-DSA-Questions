@@ -1,0 +1,30 @@
+// https://leetcode.com/problems/reverse-words-in-a-string/
+
+class Solution {
+    public String reverseWords(String s) {
+        int i=s.length()-1;
+        String result=new String();
+        while(i>=0){
+            while(i>=0 && s.charAt(i)==' '){
+                i--;
+            }
+
+            int j=i;
+
+            //if no words left and only space left
+            if(i<0) break;
+
+            while(i>=0 && s.charAt(i)!=' '){
+                i--;
+            }
+
+            if(result.length()==0){
+                result=result.concat(s.substring(i+1,j+1));
+            }
+            else{
+                result=result.concat(" "+s.substring(i+1,j+1));
+            }
+        }
+        return result;
+    }
+}
