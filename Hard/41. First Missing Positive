@@ -1,0 +1,65 @@
+// https://leetcode.com/problems/first-missing-positive/
+
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        int n=nums.length;
+        for(int i=0;i<n;i++){
+            int element=nums[i];
+            int seat=element-1;
+
+            if(element>=1 && element<=n){
+                if(element!=nums[seat]){
+                    int t=nums[i];
+                    nums[i]=nums[seat];
+                    nums[seat]=t;
+                    i--;
+                }
+            }
+        }
+
+        for(int i=0;i<n;i++){
+            if(i+1!=nums[i])
+                return i+1;
+        }
+
+        return n+1;
+    }
+}
+
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        Map<Integer,Integer> map=new HashMap<>();
+    		for(int i=0;i<n;i++){
+    			if(!map.containsKey(arr[i])){
+    				map.put(arr[i],1);
+    			}
+    			else{
+    				int ov=map.get(arr[i]);
+    				ov++;
+    				map.put(arr[i],ov);
+    			}
+    		}
+    
+    		for(int i=1;i<=n;i++){
+    			if(!map.containsKey(i)) return i;
+    		}
+    		return n+1;
+    }
+}
+
+
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        for(int i=1;i<=n;i++){
+          int flag=0;
+          for(int j=0;j<n;j++){
+            if(arr[j]==i){
+              flag=1;
+              break;
+            }
+          }
+          if(flag==0) return i;
+      }
+      return n+1;
+    }
+}
