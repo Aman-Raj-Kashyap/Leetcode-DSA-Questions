@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/insert-into-a-binary-search-tree/
+// https://leetcode.com/problems/insert-into-a-binary-search-tree
 
 class Solution {
     public TreeNode insertIntoBST(TreeNode root, int val) {
