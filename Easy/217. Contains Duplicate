@@ -1,0 +1,43 @@
+// https://leetcode.com/problems/contains-duplicate/
+
+--O(n) O(n)
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set=new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            if(set.contains(nums[i]))
+                return true;
+            set.add(nums[i]);
+        }
+        return false;
+    }
+}
+
+--O(nlogn)
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        if(nums.length==1) return false;
+        Arrays.sort(nums);
+        
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]==nums[i-1])
+                return true;
+        }
+        return false;
+    }
+}
+
+
+--O(n2)
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        boolean flag=false;
+        for(int i=0;i<nums.length;i++) {
+            for(int j=0;j<nums.length;j++) {
+                if(nums[i]==nums[j] && i!=j)
+                    flag=true;
+            }
+        }
+        return flag;
+    }
+}
