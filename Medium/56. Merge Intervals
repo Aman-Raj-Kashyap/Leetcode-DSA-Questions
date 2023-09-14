@@ -1,0 +1,58 @@
+// https://leetcode.com/problems/merge-intervals/
+
+--O(nlogn) O(n)
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        int n=intervals.length;
+        Pair[] pairs=new Pair[n];
+        
+        for(int i=0;i<n;i++){
+            pairs[i]=new Pair(intervals[i][0],intervals[i][1]);
+        }
+        
+        Arrays.sort(pairs);
+        
+        Stack<Pair> st=new Stack<>();
+        for(int i=0;i<pairs.length;i++){
+            if(i==0){
+                st.push(pairs[i]);
+            }
+            else{
+                if(pairs[i].start>st.peek().end){
+                    st.push(pairs[i]);
+                }
+                else{
+                    st.peek().end=Math.max(st.peek().end,pairs[i].end);
+                }
+            }
+        }
+        
+    
+        int[][] result=new int[st.size()][2];
+        for(int i=result.length-1;i>=0;i--){
+            Pair p=st.pop();
+            result[i][0]=p.start;
+            result[i][1]=p.end;
+        }
+        return result;
+    }
+    
+    class Pair implements Comparable<Pair>{
+        int start;
+        int end;
+        
+        public Pair(int start,int end){
+            this.start=start;
+            this.end=end;
+        }
+        
+        public int compareTo(Pair ob){
+            if(this.start!=ob.start){
+                return this.start-ob.start;
+            }
+            else{
+                return this.end-ob.end;
+            }
+        }
+    }
+}
