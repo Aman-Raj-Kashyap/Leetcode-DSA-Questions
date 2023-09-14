@@ -1,0 +1,44 @@
+// https://leetcode.com/problems/powx-n/
+
+-- O(log n) O(1)
+class Solution {
+    public double myPow(double x, int n) {     
+        long nn=n;
+        double result=1.0;
+        if(n<0){
+            nn=-1*nn;
+        }
+        
+        while(nn>0){
+            if(nn%2==1){
+                result*=x;
+                nn=nn-1;
+            }
+            else{
+                x=x*x;
+                nn=nn/2;
+            }
+        }
+        if(n<0){
+            result=(double)1.0/(double)result;
+        }
+        return result;
+    }
+}
+
+-- O(n) O(log n)
+class Solution {
+    public double myPow(double x, int n) {     
+        long temp=n;
+        if(n<0){
+            temp=Math.abs(temp);
+        }
+        
+        double result=1;
+        for(int i=0;i<temp;i++){
+            result*=x;
+        }
+        
+        return n<0?1/result:result;
+    }
+}
