@@ -1,10 +1,37 @@
 // https://leetcode.com/problems/rotate-image/
 
+--O(n2) O(1)
 class Solution {
     public void rotate(int[][] matrix) {
-        //Brute
+        class Solution {
+    public void rotate(int[][] matrix) {
         int n=matrix.length;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                int temp=matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=temp;
+            }
+        }
         
+        for(int i=0;i<n;i++){
+            int li=0,ri=n-1;
+            
+            while(li<ri){
+                int temp=matrix[i][li];
+                matrix[i][li]=matrix[i][ri];
+                matrix[i][ri]=temp;
+                li++;ri--;
+            }
+        }
+    }
+}
+
+
+--O(n2) O(n2)
+class Solution {
+    public void rotate(int[][] matrix) {
+        int n=matrix.length;
         int[][] result=new int[n][n];
         
         for(int i=0;i<n;i++){
@@ -18,13 +45,5 @@ class Solution {
                 matrix[i][j]=result[i][j];
             }
         }
-    }
-}
-
-
-
-class Solution {
-    public void rotate(int[][] matrix) {
-
     }
 }
