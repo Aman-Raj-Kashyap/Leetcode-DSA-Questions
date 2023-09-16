@@ -1,0 +1,113 @@
+// https://leetcode.com/problems/majority-element/
+
+--O(n)
+class Solution {
+    public int majorityElement(int[] nums) {
+        if(nums.length==1) return nums[0];
+
+        int majority=findMajority(nums);
+        int count=0;
+        for(int i=0;i<nums.length;i++){
+            if(majority==nums[i])
+                count++;
+        }
+
+        if(count>nums.length/2)
+            return majority;
+        else return 0;
+    }
+
+    public int findMajority(int[] nums){
+        int maj=nums[0];
+        int count=1;
+        for(int i=1;i<nums.length;i++){
+            if(maj==nums[i]){
+                count++;
+            }
+            else{
+                count--;
+            }
+
+            if(count==0){
+                maj=nums[i];
+                count=1;
+            }
+        }
+        return maj;
+    }
+}
+
+
+--O(n)
+// works only when assume that the majority element always exists in the array
+class Solution {
+    public int majorityElement(int[] nums) {
+        int candidate=0;
+        int vote=0;
+
+        for(int num:nums){
+            if(candidate==0){
+                candidate=num;
+            }
+
+            if(candidate==num){
+                vote++;
+            }
+            else{
+                vote--;
+            }
+        }
+        return candidate;   
+    }
+}
+
+
+--O(n) O(n)
+class Solution {
+    public int majorityElement(int[] nums) {
+        Map<Integer,Integer> map=new HashMap<>();
+
+        for(int i=0;i<nums.length;i++){
+            if(!map.containsKey(nums[i])){
+                map.put(nums[i],1);
+            }
+            else{
+                int ov=map.get(nums[i]);
+                ov=ov+1;
+                map.put(nums[i],ov);
+            }
+        }
+
+        for(Map.Entry<Integer,Integer> m:map.entrySet()){
+            if(m.getValue() > nums.length/2){
+                return m.getKey();
+            }
+        }
+        return -1;
+    }
+}
+
+
+--O(nlogn)
+class Solution {
+    public int majorityElement(int[] nums) {
+        //If majority of element present O(nlogn)
+        Arrays.sort(nums);
+        return nums[nums.length/2];
+    }
+}
+
+
+--O(n2)
+class Solution {
+    public int majorityElement(int[] nums) {
+        for(int i=0;i<nums.length;i++){
+            int count=0;
+            for(int j=0;j<nums.length;j++){
+                if(nums[i]==nums[j]) count++;
+            }
+            if(count>nums.length/2) return nums[i];
+        }
+        return -1;
+    }
+}
