@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/intersection-of-two-linked-lists/
 
+-- O(m+n) O(1)
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         int sizeA=size(headA);
@@ -40,3 +41,6 @@ public class Solution {
         return size;
     }
 }
+
+--O(m+n) O(n)
+Using HashMap, storing all nodes of list1 and again iterating second list, will give the intersection point
