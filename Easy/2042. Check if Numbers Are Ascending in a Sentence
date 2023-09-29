@@ -1,0 +1,27 @@
+// https://leetcode.com/problems/check-if-numbers-are-ascending-in-a-sentence/
+
+class Solution {
+    public boolean areNumbersAscending(String s) {
+        String[] str=s.split(" ");
+        
+        int maxSoFar=Integer.MIN_VALUE;
+        for(String st:str){
+            if(isNumber(st)){
+                if(Integer.parseInt(st)>maxSoFar){
+                    maxSoFar=Integer.parseInt(st);
+                }
+                else return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean isNumber(String str){
+        int i=0;
+        while(i<str.length()){
+            if(str.charAt(i)>='0' && str.charAt(i)<='9') i++;
+            else return false;
+        }
+        return true;
+    }
+}
