@@ -1,0 +1,49 @@
+// https://leetcode.com/problems/next-permutation/
+
+class Solution {
+    public void nextPermutation(int[] nums) {
+        if(nums.length<=1) return;
+        
+        //Taking 2 indexes idx1 will store where 1st element is greater than 2nd
+        //idx2 will store just greater element than idx1
+        //swap idx1 and idx2 element
+        //reverse from idx1+1 to n-1
+        int idx1=-1;
+        for(int i=nums.length-2;i>=0;i--){
+            if(nums[i]<nums[i+1]){
+                idx1=i;
+                break;
+            }
+        }
+        
+        if(idx1==-1){
+            reverse(nums,0,nums.length-1);
+        }
+        else{
+            int idx2=-1;
+            for(int i=nums.length-1;i>=0;i--){
+                if(nums[i]>nums[idx1]){
+                    idx2=i;
+                    break;
+                }
+            }
+            
+            int temp=nums[idx1];
+            nums[idx1]=nums[idx2];
+            nums[idx2]=temp;
+            
+            reverse(nums,idx1+1,nums.length-1);
+        }
+        
+        
+    }
+    
+    public void reverse(int[] arr,int low,int high){
+        while(low<high){
+            int temp=arr[low];
+            arr[low]=arr[high];
+            arr[high]=temp;
+            low++;high--;
+        }
+    }
+}
