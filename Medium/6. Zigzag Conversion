@@ -1,0 +1,37 @@
+// https://leetcode.com/problems/zigzag-conversion/
+
+class Solution {
+    public String convert(String s, int numRows) {
+        if(numRows==1) return s;
+        
+        StringBuilder[] sb=new StringBuilder[numRows];
+        
+        for(int j=0;j<sb.length;j++){
+            sb[j]=new StringBuilder("");
+        }
+        
+        int i=0;
+        boolean flag=false;
+        
+        for(char ch:s.toCharArray()){
+            sb[i]=sb[i].append(ch);
+            if(i==0 || i==numRows-1){
+                flag=!flag;
+            }
+            
+            if(flag==true){
+                i=i+1;
+            }
+            else{
+                i=i-1;
+            }
+        }
+        
+        String str="";
+        for(int j=0;j<sb.length;j++){
+            str+=sb[j];
+        }
+        
+        return str;
+    }
+}
